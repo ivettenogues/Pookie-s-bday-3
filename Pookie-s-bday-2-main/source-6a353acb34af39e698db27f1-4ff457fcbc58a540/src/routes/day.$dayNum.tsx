@@ -336,18 +336,18 @@ function Day2() {
 ══════════════════════════════════════════════════════════ */
 
 const memories = [
-  { emoji: '🌊', date: 'Juillet 2024', title: 'The Ocean Call', memory: 'The first time you described the sea in Tahiti, I understood why you stayed. "It\'s not just blue," you said, "it\'s every shade of feeling at once." I replayed that for days.' },
-  { emoji: '☕', date: 'Août 2024', title: 'Morning Coffee', memory: 'You always send me coffee pictures when you wake up. It became my alarm clock — better than any sound. There\'s something incredibly intimate about sharing a cup across 16,000 km.' },
-  { emoji: '🌙', date: 'Septembre 2024', title: 'Late Night Calls', memory: 'You\'re always in my tomorrow, I\'m always in your yesterday. And somehow we found a time that was ours — that strange, quiet hour where Paris sleeps and Tahiti softens.' },
-  { emoji: '🌺', date: 'Octobre 2024', title: 'Tiare', memory: 'You sent me a pressed tiare flower in an envelope once. It arrived a little battered, still fragrant. I kept it. I still have it. It smells like you now.' },
-  { emoji: '🎵', date: 'Novembre 2024', title: 'Our Playlist', memory: 'The playlist we built together, one song at a time, from two different hemispheres. Every song a tiny telegram — "this is what I\'m feeling," "this made me think of you."' },
-  { emoji: '📸', date: 'Décembre 2024', title: 'Your Sunsets', memory: 'I have a folder on my phone. Just your sunsets. 47 of them. Each one slightly different — sometimes gold, sometimes violent orange, sometimes soft pink. All of them yours.' },
-  { emoji: '😂', date: 'Janvier 2025', title: 'The Laugh', memory: 'I can\'t even explain what started it, but we laughed for forty straight minutes on that call. Real, breathless, ridiculous laughter. I needed that more than I knew.' },
-  { emoji: '🌴', date: 'Février 2025', title: 'Tahiti Dream', memory: 'You described your island to me so many times that I dreamed about it before I\'d ever seen a photo. In my dreams it\'s always 5pm light, always warm, always you on the porch.' },
-  { emoji: '💬', date: 'Mars 2025', title: 'The Message', memory: 'The morning you sent "je pensais à toi en me réveillant" — just that, nothing else — and I read it on the metro and my whole day changed colour.' },
-  { emoji: '🌅', date: 'Avril 2025', title: 'Synchronized Sunset', memory: 'We timed it once — you watching sunset in Tahiti, me watching sunset in Paris, 12 hours apart but somehow the same sky. You said the clouds looked like the ones above Montmartre.' },
-  { emoji: '📚', date: 'Mai 2025', title: 'Same Book', memory: 'We read the same book at the same time. Different copies, different continents. We\'d text each chapter. It was the closest I\'ve felt to being in the same room with you.' },
-  { emoji: '✈️', date: 'Juin 2025', title: 'The Promise', memory: 'The day I booked the ticket. I sent you just the booking confirmation, no message. You replied with a single heart. That was enough — more than enough.' },
+  { date: 'Juillet 2024', title: 'The Ocean Call', memory: 'The first time you described the sea in Tahiti, I understood why you stayed. "It\'s not just blue," you said, "it\'s every shade of feeling at once." I replayed that for days.' },
+  { date: 'Août 2024', title: 'Morning Coffee', memory: 'You always send me coffee pictures when you wake up. It became my alarm clock — better than any sound. There\'s something incredibly intimate about sharing a cup across 16,000 km.' },
+  { date: 'Septembre 2024', title: 'Late Night Calls', memory: 'You\'re always in my tomorrow, I\'m always in your yesterday. And somehow we found a time that was ours — that strange, quiet hour where Paris sleeps and Tahiti softens.' },
+  { date: 'Octobre 2024', title: 'Tiare', memory: 'You sent me a pressed tiare flower in an envelope once. It arrived a little battered, still fragrant. I kept it. I still have it. It smells like you now.' },
+  { date: 'Novembre 2024', title: 'Our Playlist', memory: 'The playlist we built together, one song at a time, from two different hemispheres. Every song a tiny telegram — "this is what I\'m feeling," "this made me think of you."' },
+  { date: 'Décembre 2024', title: 'Your Sunsets', memory: 'I have a folder on my phone. Just your sunsets. 47 of them. Each one slightly different — sometimes gold, sometimes violent orange, sometimes soft pink. All of them yours.' },
+  { date: 'Janvier 2025', title: 'The Laugh', memory: 'I can\'t even explain what started it, but we laughed for forty straight minutes on that call. Real, breathless, ridiculous laughter. I needed that more than I knew.' },
+  { date: 'Février 2025', title: 'Tahiti Dream', memory: 'You described your island to me so many times that I dreamed about it before I\'d ever seen a photo. In my dreams it\'s always 5pm light, always warm, always you on the porch.' },
+  { date: 'Mars 2025', title: 'The Message', memory: 'The morning you sent "je pensais à toi en me réveillant" — just that, nothing else — and I read it on the metro and my whole day changed colour.' },
+  { date: 'Avril 2025', title: 'Synchronized Sunset', memory: 'We timed it once — you watching sunset in Tahiti, me watching sunset in Paris, 12 hours apart but somehow the same sky. You said the clouds looked like the ones above Montmartre.' },
+  { date: 'Mai 2025', title: 'Same Book', memory: 'We read the same book at the same time. Different copies, different continents. We\'d text each chapter. It was the closest I\'ve felt to being in the same room with you.' },
+  { date: 'Juin 2025', title: 'The Promise', memory: 'The day I booked the ticket. I sent you just the booking confirmation, no message. You replied with a single heart. That was enough — more than enough.' },
 ]
 
 // Deterministic heart positions — no Math.random() to avoid hydration mismatch
@@ -364,6 +364,7 @@ const HEARTS_DATA = [
   {x: 10, y: 72, size: 2.2, rot:  -5, delay: 0.8},
   {x: 36, y: 77, size: 2.1, rot:  12, delay: 0.1},
   {x: 62, y: 70, size: 2.3, rot: -20, delay: 0.5},
+  {x: 50, y: 58, size: 2.2, rot:   8, delay: 0.6},
 ]
 
 function Day3() {
@@ -401,16 +402,12 @@ function Day3() {
                 lineHeight: 1,
                 padding: '8px',
               }}
-              aria-label={memories[i].title}
+              aria-label={memories[i % memories.length].title}
             >
               ❤️
             </button>
           ))}
         </div>
-
-        <p style={{ textAlign: 'center', color: 'rgba(176,196,216,0.4)', fontSize: '0.85rem', marginTop: '8px' }}>
-          {open === null ? 'Tap a heart to reveal a memory' : ''}
-        </p>
       </div>
 
       {/* Memory modal */}
@@ -442,17 +439,14 @@ function Day3() {
             }}
             onClick={e => e.stopPropagation()}
           >
-            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-              <span style={{ fontSize: '3rem' }}>{memories[open].emoji}</span>
-            </div>
             <p style={{ color: 'var(--gold)', fontSize: '0.72rem', letterSpacing: '0.22em', textTransform: 'uppercase', textAlign: 'center', margin: '0 0 8px' }}>
-              {memories[open].date}
+              {memories[open % memories.length].date}
             </p>
             <h3 className="font-romantic" style={{ fontSize: '1.5rem', color: 'var(--text-light)', textAlign: 'center', margin: '0 0 18px', fontWeight: 400 }}>
-              {memories[open].title}
+              {memories[open % memories.length].title}
             </h3>
             <p style={{ color: 'var(--sand)', lineHeight: 1.78, margin: '0 0 28px', fontSize: '0.95rem' }}>
-              {memories[open].memory}
+              {memories[open % memories.length].memory}
             </p>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '12px' }}>
               {open > 0 && (
@@ -469,7 +463,7 @@ function Day3() {
               >
                 ✕ Close
               </button>
-              {open < memories.length - 1 && (
+              {open < HEARTS_DATA.length - 1 && (
                 <button
                   onClick={() => setOpen(open + 1)}
                   style={{ padding: '10px 20px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '50px', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.85rem' }}
@@ -484,7 +478,6 @@ function Day3() {
     </PageShell>
   )
 }
-
 /* ══════════════════════════════════════════════════════════
    DAY 4 · August 5 · OPEN WHEN 📩
 ══════════════════════════════════════════════════════════ */
@@ -492,38 +485,26 @@ function Day3() {
 const openWhenLetters = [
   {
     label: 'Open when you miss me',
-    icon: '💙',
-    sealColor: '#4a6fa8',
     text: "I'm here. Not in the room, I know — but in every message I've ever sent you, every call that ran too long, every song I added to our playlist thinking of you. The distance is real but so is this: I choose you every single day, from 16,000 km away. That doesn't stop when we're not talking. I miss you too. Meet me there, in that feeling — it means we're thinking of each other at the same time. That's not nothing. That's everything.",
   },
   {
     label: "Open when you're feeling low",
-    icon: '🌧️',
-    sealColor: '#5a7a9a',
     text: "Some days are just hard. Not because anything went wrong necessarily, but because the weight of ordinary life feels heavier. On those days, I want you to remember: you have made it through every difficult day so far. Every single one. That's a 100% success rate. I love you on the good days and even more on the ones like this. Let yourself rest. Let yourself feel it. I'll be here when you come up for air.",
   },
   {
     label: 'Open when you need to laugh',
-    icon: '😄',
-    sealColor: '#4a8a5a',
     text: "Remember when we tried to count how many times the call dropped during that one conversation and eventually just gave up and texted 'same'? Or when you described your neighbour's rooster in such detail that I laughed so hard I cried? Or when we both said the exact same weird phrase at the exact same time on a call and then just stared at each other across continents, stunned? You're ridiculous, and I am utterly delighted to know you.",
   },
   {
     label: "Open when you want to know you're loved",
-    icon: '❤️',
-    sealColor: '#a04040',
     text: "You are loved. Completely. Not the 'you're great but' kind of love — the full thing, no asterisks. I love your specific way of thinking, your honesty, the way you get excited about small things that matter to you. I love your voice when you're sleepy. I love that you remember details I mentioned once, weeks ago. I love that you exist. I love you so much it sometimes feels like a physical thing, like something I carry around. You are so, so loved.",
   },
   {
     label: "Open when you can't sleep",
-    icon: '🌙',
-    sealColor: '#6a4a9a',
     text: "It's quiet there now. The lagoon is probably doing that thing where it looks like black glass. I can't see it from Paris but I imagine it sometimes, and I imagine you near it. Close your eyes. Think of one good thing from today — just one. Hold it gently. You don't have to fix anything right now. The night is just asking you to rest. And when morning comes, I'll be there in your messages. I always am. Sleep well, mon amour.",
   },
   {
     label: "Open when you're waiting for me",
-    icon: '✈️',
-    sealColor: '#8a7030',
     text: "I am coming. I want you to know that I am actually, literally, on my way. Every single day between now and August 12 is just time folding itself up to close the distance between us. The wait is almost over. Think about where you want to take me first — the specific place, the specific light. I want to see everything through your eyes. I want to finally be in the same place as you, at the same time, under the same sky. Almost there, my love. Almost.",
   },
 ]
@@ -539,114 +520,79 @@ function OpenWhenCard({ letter, index }: { letter: typeof openWhenLetters[0]; in
     >
       <div
         style={{
-          borderRadius: '14px',
+          borderRadius: '10px',
           overflow: 'hidden',
-          boxShadow: isOpen ? '0 10px 40px rgba(0,0,0,0.45)' : '0 4px 18px rgba(0,0,0,0.3)',
+          boxShadow: isOpen ? '0 10px 40px rgba(0,0,0,0.35)' : '0 4px 16px rgba(0,0,0,0.18)',
           transition: 'box-shadow 0.35s ease',
-          border: '1px solid rgba(200,170,110,0.18)',
+          border: '1px solid rgba(0,0,0,0.08)',
+          background: '#ffffff',
         }}
       >
         {/* Envelope flap */}
         <div
           style={{
             position: 'relative',
-            background: isOpen
-              ? 'linear-gradient(175deg, #c8a472 0%, #b8904a 100%)'
-              : 'linear-gradient(175deg, #d4b080 0%, #c09860 100%)',
-            height: isOpen ? '52px' : '88px',
-            transition: 'height 0.4s ease, background 0.3s ease',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            overflow: 'hidden',
+            background: 'linear-gradient(175deg, #ffffff 0%, #f0ece2 100%)',
+            height: isOpen ? '34px' : 'min(40vw, 110px)',
+            clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
+            transition: 'height 0.4s ease',
           }}
         >
-          {/* Fold-line SVG */}
+          {/* Fold-line */}
           <svg
             viewBox="0 0 100 50"
             preserveAspectRatio="none"
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.18 }}
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.12 }}
           >
-            <line x1="0" y1="0" x2="50" y2="50" stroke="#3a2a0a" strokeWidth="0.6" />
-            <line x1="100" y1="0" x2="50" y2="50" stroke="#3a2a0a" strokeWidth="0.6" />
+            <line x1="0" y1="0" x2="50" y2="50" stroke="#5a3e18" strokeWidth="0.6" />
+            <line x1="100" y1="0" x2="50" y2="50" stroke="#5a3e18" strokeWidth="0.6" />
           </svg>
-
-          {isOpen ? (
-            <span style={{ fontSize: '0.72rem', letterSpacing: '0.12em', color: '#5a3e18', opacity: 0.75, zIndex: 1 }}>
-              {letter.label}
-            </span>
-          ) : (
-            /* Wax seal */
-            <div
-              style={{
-                width: '50px',
-                height: '50px',
-                borderRadius: '50%',
-                background: `radial-gradient(circle at 35% 35%, rgba(255,255,255,0.25), transparent 60%), ${letter.sealColor}`,
-                boxShadow: '0 3px 10px rgba(0,0,0,0.35)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '1.4rem',
-                zIndex: 1,
-                marginTop: '8px',
-              }}
-            >
-              {letter.icon}
-            </div>
-          )}
         </div>
 
         {/* Envelope body */}
         <div
           style={{
-            background: 'linear-gradient(180deg, #faf2e0 0%, #f5e8cc 100%)',
-            borderTop: '1px solid rgba(90,62,20,0.15)',
-            padding: '20px 22px',
+            background: '#ffffff',
+            borderTop: '1px solid rgba(0,0,0,0.06)',
+            padding: '16px 16px',
           }}
         >
           {!isOpen ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <span style={{ fontSize: '1.25rem', flexShrink: 0 }}>{letter.icon}</span>
+            <p
+              style={{
+                margin: 0,
+                fontFamily: "'Cormorant Garamond', serif",
+                fontSize: '0.95rem',
+                fontStyle: 'italic',
+                color: '#5a3e18',
+                lineHeight: 1.4,
+                textAlign: 'center',
+              }}
+            >
+              {letter.label}
+            </p>
+          ) : (
+            <div>
               <p
                 style={{
-                  margin: 0,
+                  margin: '0 0 12px',
                   fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: '1rem',
+                  fontSize: '0.98rem',
                   fontStyle: 'italic',
+                  fontWeight: 600,
                   color: '#5a3e18',
-                  lineHeight: 1.4,
-                  flex: 1,
+                  textAlign: 'center',
                 }}
               >
                 {letter.label}
               </p>
-              <span style={{ fontSize: '0.75rem', color: '#9a7a40', opacity: 0.7, flexShrink: 0 }}>Tap →</span>
-            </div>
-          ) : (
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
-                <span style={{ fontSize: '1.25rem', flexShrink: 0 }}>{letter.icon}</span>
+              <div style={{ borderTop: '1px solid rgba(0,0,0,0.06)', paddingTop: '12px' }}>
                 <p
                   style={{
-                    margin: 0,
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: '1.02rem',
-                    fontStyle: 'italic',
-                    fontWeight: 600,
-                    color: '#5a3e18',
-                  }}
-                >
-                  {letter.label}
-                </p>
-              </div>
-              <div style={{ borderTop: '1px solid rgba(90,62,20,0.15)', paddingTop: '14px' }}>
-                <p
-                  style={{
-                    margin: '0 0 16px',
+                    margin: '0 0 14px',
                     color: '#2e1e0a',
-                    lineHeight: 1.82,
-                    fontSize: '0.92rem',
+                    lineHeight: 1.7,
+                    fontSize: '0.85rem',
                     fontFamily: "'Georgia', serif",
                   }}
                 >
@@ -657,11 +603,11 @@ function OpenWhenCard({ letter, index }: { letter: typeof openWhenLetters[0]; in
                     margin: 0,
                     textAlign: 'right',
                     fontFamily: "'Dancing Script', cursive",
-                    fontSize: '1.1rem',
+                    fontSize: '1.05rem',
                     color: '#8a6030',
                   }}
                 >
-                  Avec amour ❤️
+                  Avec amour
                 </p>
               </div>
             </div>
@@ -679,7 +625,16 @@ function Day4() {
       bgGradient="radial-gradient(ellipse at 40% 10%, #1a1208 0%, #071828 60%)"
     >
       <SectionTitle label="Day 4 · August 5" title="Open When…" subtitle="Letters sealed with love, for whatever you feel" />
-      <div style={{ maxWidth: '640px', margin: '0 auto', padding: '0 20px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+      <div
+        style={{
+          maxWidth: '600px',
+          margin: '0 auto',
+          padding: '0 20px',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '16px',
+        }}
+      >
         {openWhenLetters.map((letter, i) => (
           <OpenWhenCard key={i} letter={letter} index={i} />
         ))}
@@ -687,7 +642,6 @@ function Day4() {
     </PageShell>
   )
 }
-
 /* ══════════════════════════════════════════════════════════
    DAY 5 · August 6 · BIRTHDAY SURPRISE #1 🎁
 ══════════════════════════════════════════════════════════ */
@@ -972,50 +926,154 @@ function Day7() {
    DAY 8 · August 9 · BECAUSE OF YOU ✨
 ══════════════════════════════════════════════════════════ */
 
-const becauseOfYou = [
-  { before: 'I used to sleep through sunrises.', after: 'Now I catch them sometimes, thinking of yours.' },
-  { before: 'I kept playlists mostly for myself.', after: 'Now every new song gets evaluated: would he like this?' },
-  { before: 'I thought long-distance was impossible.', after: 'You made me revise that completely.' },
-  { before: 'I forgot what it felt like to be properly listened to.', after: 'You reminded me.' },
-  { before: 'I thought I knew what I wanted.', after: "You showed me some things I hadn't even considered." },
-  { before: 'I was ambivalent about Tahiti.', after: 'Now I feel like I already have a home there.' },
-  { before: 'Time zones were just an inconvenience.', after: "Now they're the shape of the distance between us — something to solve together." },
-  { before: 'I read alone.', after: 'Now reading feels like a shared activity.' },
+type GalleryPhoto = {
+  src: string
+  caption: string
+}
+
+
+const galleryPhotos: GalleryPhoto[] = [
+  { src: '/gallery/photo-01.jpg', caption: 'Your caption here' },
+  { src: '/gallery/photo-02.jpg', caption: 'Your caption here' },
+  { src: '/gallery/photo-03.jpg', caption: 'Your caption here' },
+  { src: '/gallery/photo-01.jpg', caption: 'Your caption here' },
+  { src: '/gallery/photo-02.jpg', caption: 'Your caption here' },
+  { src: '/gallery/photo-03.jpg', caption: 'Your caption here' },
+  { src: '/gallery/photo-01.jpg', caption: 'Your caption here' },
+  { src: '/gallery/photo-02.jpg', caption: 'Your caption here' },
+  { src: '/gallery/photo-03.jpg', caption: 'Your caption here' },
+  { src: '/gallery/photo-01.jpg', caption: 'Your caption here' },
+  { src: '/gallery/photo-02.jpg', caption: 'Your caption here' },
+  { src: '/gallery/photo-03.jpg', caption: 'Your caption here' },
+  { src: '/gallery/photo-01.jpg', caption: 'Your caption here' },
+  { src: '/gallery/photo-02.jpg', caption: 'Your caption here' },
+  { src: '/gallery/photo-03.jpg', caption: 'Your caption here' },
+  { src: '/gallery/photo-03.jpg', caption: 'Your caption here' },
 ]
 
 function Day8() {
+  const [lightbox, setLightbox] = useState<GalleryPhoto | null>(null)
+
   return (
     <PageShell dayNum={8} bgGradient="radial-gradient(ellipse at 30% 30%, #1a1a0a 0%, #071828 60%)">
-      <SectionTitle label="Day 8 · August 9" title="Because of You" subtitle="The ways you've quietly changed things" />
-      <div style={{ maxWidth: '640px', margin: '0 auto', padding: '0 20px' }}>
-        {becauseOfYou.map((item, i) => (
-          <div
-            key={i}
-            className="animate-fade-up"
-            style={{
-              display: 'flex',
-              gap: '16px',
-              marginBottom: '20px',
-              animationDelay: `${i * 100}ms`,
-            }}
-          >
-            <div style={{ width: '3px', background: `hsl(${50 + i * 15}, 70%, 60%)`, borderRadius: '2px', flexShrink: 0 }} />
-            <div>
-              <p style={{ color: 'rgba(176,196,216,0.55)', margin: '0 0 6px', fontSize: '0.88rem', fontStyle: 'italic', textDecoration: 'line-through', textDecorationColor: 'rgba(176,196,216,0.3)' }}>{item.before}</p>
-              <p style={{ color: 'var(--sand)', margin: 0, fontSize: '0.95rem', lineHeight: 1.6 }}>{item.after}</p>
+      <SectionTitle label="Day 8 · August 9" title="Because of You" subtitle="A little gallery, just for you" />
+
+      <div style={{ maxWidth: '760px', margin: '0 auto', padding: '0 20px 40px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
+            gap: '16px',
+          }}
+        >
+          {galleryPhotos.map((photo, i) => (
+            <div
+              key={i}
+              className="animate-fade-up"
+              style={{
+                animationDelay: `${i * 40}ms`,
+                borderRadius: '12px',
+                overflow: 'hidden',
+                cursor: 'pointer',
+                border: '1px solid rgba(200,192,112,0.2)',
+                boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+                background: 'rgba(255,255,255,0.03)',
+              }}
+              onClick={() => setLightbox(photo)}
+            >
+              <img
+                src={photo.src}
+                alt={photo.caption}
+                style={{
+                  width: '100%',
+                  height: '160px',
+                  objectFit: 'cover',
+                  display: 'block',
+                }}
+              />
+              <p
+                style={{
+                  margin: 0,
+                  padding: '10px 12px',
+                  fontSize: '0.82rem',
+                  fontStyle: 'italic',
+                  color: 'var(--sand)',
+                  lineHeight: 1.4,
+                }}
+              >
+                {photo.caption}
+              </p>
             </div>
-          </div>
-        ))}
-        <div className="glass text-center animate-fade-up" style={{ padding: '28px', marginTop: '20px', background: 'rgba(200,192,112,0.07)', border: '1px solid rgba(200,192,112,0.25)' }}>
-          <p className="font-romantic italic" style={{ fontSize: '1.2rem', color: 'var(--sand)', margin: 0 }}>
-            "You didn't change me. You just showed me parts of myself I hadn't met yet."
-          </p>
+          ))}
         </div>
       </div>
+
+      {/* Lightbox */}
+      {lightbox && (
+        <div
+          className="animate-fade-in"
+          onClick={() => setLightbox(null)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(7,24,40,0.9)',
+            backdropFilter: 'blur(10px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '24px',
+            zIndex: 200,
+          }}
+        >
+          <div
+            className="animate-fade-up"
+            onClick={e => e.stopPropagation()}
+            style={{ maxWidth: '560px', width: '100%' }}
+          >
+            <img
+              src={lightbox.src}
+              alt={lightbox.caption}
+              style={{
+                width: '100%',
+                maxHeight: '70vh',
+                objectFit: 'contain',
+                borderRadius: '14px',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+              }}
+            />
+            <p
+              className="font-romantic italic"
+              style={{
+                textAlign: 'center',
+                color: 'var(--sand)',
+                fontSize: '1.1rem',
+                marginTop: '18px',
+              }}
+            >
+              {lightbox.caption}
+            </p>
+            <div style={{ textAlign: 'center', marginTop: '12px' }}>
+              <button
+                onClick={() => setLightbox(null)}
+                style={{
+                  padding: '8px 22px',
+                  borderRadius: '50px',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  background: 'rgba(255,255,255,0.06)',
+                  color: 'var(--text-muted)',
+                  fontSize: '0.85rem',
+                  cursor: 'pointer',
+                }}
+              >
+                ✕ Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </PageShell>
   )
 }
-
 /* ══════════════════════════════════════════════════════════
    DAY 9 · August 10 · BIRTHDAY SURPRISE #2 🎁
 ══════════════════════════════════════════════════════════ */
